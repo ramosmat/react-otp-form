@@ -12,6 +12,14 @@
   justify-content: space-evenly;
 }
 
+.divInput input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.divInput input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .divInput input {
   width: 2rem;
   height: 2.5rem;
@@ -55,4 +63,8 @@
 
 .form button:hover {
   box-shadow: 0 0 4px 2px #81adff;
+}
+
+.form button:active {
+  scale: 0.95;
 }

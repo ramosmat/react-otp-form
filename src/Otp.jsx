@@ -2,15 +2,17 @@ import React from 'react';
 import styles from './Otp.module.css';
 
 const Otp = () => {
-  const ref = React.useRef(null);
+  const firstInputRef = React.useRef(null);
+  const lastInputRef = React.useRef(null);
   const [otp, setOtp] = React.useState(['', '', '', '', '']);
 
   React.useEffect(() => {
-    ref.current?.focus();
+    firstInputRef.current.focus();
   }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
+    window.alert('O código OTP foi enviado com sucesso!');
   }
 
   // Função para sempre atualizar o valor do estado otp
@@ -50,6 +52,23 @@ const Otp = () => {
     }
   }
 
+  // Função para colar os dados com Ctrl + V
+  function handlePaste(event) {
+    //12341
+    event.preventDefault();
+    const pastedData = event.clipboardData.getData('text');
+    const otpArray = pastedData.split('').filter((el) => /^\d*$/.test(el));
+
+    if (otpArray.length != 5) {
+      window.alert(
+        'O código informado está com formato inválido. Devem ser 5 valores numericos',
+      );
+    } else {
+      setOtp(otpArray);
+      lastInputRef.current.focus();
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.divInput}>
@@ -59,11 +78,12 @@ const Otp = () => {
           name="otp-0"
           required
           maxLength={1}
-          type="text"
+          type="number"
           value={otp[0]}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          ref={ref}
+          onPaste={handlePaste}
+          ref={firstInputRef}
         />
         <input
           inputMode="numeric"
@@ -71,10 +91,11 @@ const Otp = () => {
           name="otp-1"
           required
           maxLength={1}
-          type="text"
+          type="number"
           value={otp[1]}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
         />
         <input
           inputMode="numeric"
@@ -82,10 +103,11 @@ const Otp = () => {
           name="otp-2"
           required
           maxLength={1}
-          type="text"
+          type="number"
           value={otp[2]}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
         />
         <input
           inputMode="numeric"
@@ -93,10 +115,11 @@ const Otp = () => {
           name="otp-3"
           required
           maxLength={1}
-          type="text"
+          type="number"
           value={otp[3]}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
         />
         <input
           inputMode="numeric"
@@ -104,10 +127,12 @@ const Otp = () => {
           name="otp-4"
           required
           maxLength={1}
-          type="text"
+          type="number"
           value={otp[4]}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
+          ref={lastInputRef}
         />
       </div>
       <button>Verificar OTP</button>
