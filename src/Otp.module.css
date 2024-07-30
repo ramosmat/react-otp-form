@@ -32,8 +32,10 @@
   transition: 0.3s;
 }
 
-.divInput input:not(:focus) {
+.divInput input:not(:focus),
+.divInput input:not(:hover) {
   background-color: bisque;
+  border: 1px solid transparent;
 }
 
 .divInput input:hover {
@@ -67,4 +69,10 @@
 
 .form button:active {
   scale: 0.95;
+}
+
+@media (width <= 400px) {
+  .form button {
+    font-size: 1rem;
+  }
 }

@@ -37,11 +37,19 @@ ul {
   border-radius: 30px;
 }
 
+@media (width <= 400px) {
+  .container {
+    padding: 40px 15px;
+    margin: auto 15px;
+  }
+}
+
 .title {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+  text-align: center;
 }
 
 .title h1 {
@@ -52,4 +60,10 @@ ul {
 .title p {
   color: #bebebe;
   font-weight: 500;
+}
+
+@media (width <= 400px) {
+  .title h1 {
+    font-size: 1.5rem;
+  }
 }
