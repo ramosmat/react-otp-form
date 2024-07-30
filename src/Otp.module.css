@@ -28,8 +28,13 @@
   background-color: bisque;
 }
 
-.divInput input:focus,
 .divInput input:hover {
+  background: beige;
+  border-color: chocolate;
+  /* box-shadow: 0 0 4px 2px chocolate; */
+}
+
+.divInput input:focus {
   background: beige;
   border-color: chocolate;
   box-shadow: 0 0 4px 2px chocolate;

@@ -13,6 +13,7 @@ const Otp = () => {
     event.preventDefault();
   }
 
+  // Função para sempre atualizar o valor do estado otp
   function handleChange(event) {
     const value = event.target.value;
     const name = event.target.name;
@@ -31,6 +32,24 @@ const Otp = () => {
     }
   }
 
+  // Função para selecionar cada um dos inputs de acordo com a tecla
+  function handleKeyDown(event) {
+    const prevInput = event.target.previousElementSibling;
+    const nextInput = event.target.nextElementSibling;
+
+    const { key } = event;
+
+    if (key === 'Backspace' && !event.target.value && prevInput) {
+      prevInput.focus();
+    }
+    if (key === 'ArrowLeft' && prevInput) {
+      prevInput.focus();
+    }
+    if (key === 'ArrowRight' && nextInput) {
+      nextInput.focus();
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.divInput}>
@@ -43,6 +62,7 @@ const Otp = () => {
           type="text"
           value={otp[0]}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
           ref={ref}
         />
         <input
@@ -54,6 +74,7 @@ const Otp = () => {
           type="text"
           value={otp[1]}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
         <input
           inputMode="numeric"
@@ -64,6 +85,7 @@ const Otp = () => {
           type="text"
           value={otp[2]}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
         <input
           inputMode="numeric"
@@ -74,6 +96,7 @@ const Otp = () => {
           type="text"
           value={otp[3]}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
         <input
           inputMode="numeric"
@@ -84,6 +107,7 @@ const Otp = () => {
           type="text"
           value={otp[4]}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <button>Verificar OTP</button>
